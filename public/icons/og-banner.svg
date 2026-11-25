@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" fill="none">
+  <rect width="1200" height="630" fill="#1C1F24"/>
+  <rect x="32" y="32" width="1136" height="566" rx="12" fill="#2A2E35" fill-opacity="0.55" stroke="#D4A359" stroke-opacity="0.38" stroke-width="1.5"/>
+  <circle cx="290" cy="315" r="185" fill="#D4A359" fill-opacity="0.08"/>
+  <circle cx="290" cy="315" r="128" stroke="#D4A359" stroke-opacity="0.45" stroke-width="1.5"/>
+  <path d="M290 160L308 286L430 315L308 344L290 470L272 344L150 315L272 286L290 160Z" stroke="#D4A359" stroke-width="2" fill="#D4A359" fill-opacity="0.12"/>
+  <circle cx="290" cy="315" r="22" fill="#D4A359"/>
+  <circle cx="290" cy="315" r="9" fill="#F4EFE6"/>
+  <text x="530" y="245" fill="#D4A359" font-family="Georgia, serif" font-size="22" letter-spacing="5">THE GREY PILGRIM · DUANGTOK · FANRAI</text>
+  <text x="530" y="315" fill="#F4EFE6" font-family="Georgia, serif" font-size="52" font-weight="bold">ผู้เดินทางชุดเทา</text>
+  <text x="530" y="372" fill="#C0C5CE" font-family="sans-serif" font-size="24">พื้นที่สะท้อนจิตวิทยาเชิงลึก 3 ศาสตร์ภาษาไทย</text>
+  <line x1="530" y1="412" x2="1060" y2="412" stroke="#D4A359" stroke-opacity="0.35" stroke-width="1"/>
+  <text x="530" y="456" fill="#C0C5CE" font-family="sans-serif" font-size="20">จังหวะชีวิต · ไพ่ทาโรต์ 78 ใบ · ถอดรหัสความฝัน HVDC &amp; Clara Hill</text>
+</svg>

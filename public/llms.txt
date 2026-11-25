@@ -1,0 +1,18 @@
+# The Grey Pilgrim — ผู้เดินทางชุดเทา (Multi-Domain Psychological Reflection Platform)
+
+> Thai-language psychological self-reflection, life-cycle decoding, 78-card Tarot cognitive reframing, and Hall-Van de Castle dream analysis platform.
+
+## Core Principles
+- Non-superstitious framing: All insights are psychological reflections, behavioral pattern observations, and cognitive reframes—never guaranteed prophecy, fate prediction, or medical diagnosis.
+- Privacy & Compliance: PDPA Section 26 explicit consent gating before personal reflection or optional sanitized Gmail theme extraction.
+
+## Three Domains Served From Shared Architecture
+1. **Life-Cycle & Transit Decoder (DuangTok)**: Seasonal Thai psychological reflections, cognitive-bias awareness, and personalized crossroads analysis.
+2. **Tarot Reflection Decoder (The Grey Pilgrim / ผู้เดินทางชุดเทา)**: Complete 78-card psychological Lore Library (Light vs. Shadow reflections) and pre-reveal free-association multi-card readings.
+3. **Dream & Night-Omen Decoder (FanRai)**: Sleep continuity guides plus Hall-Van de Castle (HVDC) quantitative metrics and Clara Hill 3-stage reflection.
+
+## Key Routes
+- `/` — Active domain broadsheet, free articles, and interactive Reading Studio
+- `/lore` — Full 78-Card Tarot Psychological Lore Library
+- `/sitemap.xml` — Dynamic per-domain XML sitemap
+- `/robots.txt` — Crawler policy

@@ -1,0 +1,6 @@
+{
+  "name": "The Grey Pilgrim — ผู้เดินทางชุดเทา",
+  "description": "แพลตฟอร์มสะท้อนจิตวิทยาเชิงลึก 3 ศาสตร์ในภาษาไทย: จังหวะชีวิต ไพ่ทาโรต์ 78 ใบ และถอดรหัสความฝันตามหลัก HVDC พร้อมเสียงบรรยายภาษาไทย",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

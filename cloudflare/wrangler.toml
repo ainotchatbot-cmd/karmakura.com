@@ -1,0 +1,21 @@
+name = "the-grey-pilgrim-platform"
+main = "cloudflare/worker-entry.ts"
+compatibility_date = "2026-11-01"
+compatibility_flags = ["nodejs_compat"]
+
+[vars]
+DOMAIN_HOROSCOPE = "duangtok.example.com"
+DOMAIN_TAROT = "greypilgrim.example.com"
+DOMAIN_DREAM = "fanrai.example.com"
+PROMPTPAY_ID = "0812345678"
+
+# Bind native free Cloudflare KV namespace for 1-free-trial & PromptPay order tokens:
+# [[kv_namespaces]]
+# binding = "PILGRIM_KV"
+# id = "REPLACE_WITH_YOUR_KV_NAMESPACE_ID"
+
+# Configure secrets via Wrangler CLI (never commit secrets):
+# npx wrangler secret put GEMINI_API_KEY
+# npx wrangler secret put IP_HASH_SALT
+# npx wrangler secret put TOKEN_SIGNING_SECRET
+# npx wrangler secret put PROMPTPAY_WEBHOOK_SECRET

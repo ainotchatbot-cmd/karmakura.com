@@ -1,0 +1,191 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "Private user sanctuary preferences and PDPA consent record scoped to Firebase Auth UID.",
+      "type": "object",
+      "properties": {
+        "uid": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$",
+          "description": "Firebase Auth UID matching document path."
+        },
+        "displayName": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100,
+          "description": "Display name shown inside the Sanctuary."
+        },
+        "preferredLens": {
+          "type": "string",
+          "enum": ["buddhist", "islamic", "chinese", "christian", "jewish", "thai_folk"],
+          "description": "Last selected Perspective Lens."
+        },
+        "pdpaAccepted": {
+          "type": "boolean",
+          "description": "Whether user acknowledged PDPA Section 26 notice."
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server creation timestamp."
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server last update timestamp."
+        }
+      },
+      "required": ["uid", "displayName", "preferredLens", "pdpaAccepted", "createdAt", "updatedAt"]
+    },
+    "AbbotThread": {
+      "title": "AbbotThread",
+      "description": "Multi-turn conversation thread with the Wise Wizard Frog Abbot.",
+      "type": "object",
+      "properties": {
+        "ownerId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$",
+          "description": "Owning user UID."
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 140,
+          "description": "Thai summary title of the Abbot conversation."
+        },
+        "domainSlot": {
+          "type": "string",
+          "enum": ["slot_horoscope", "slot_tarot", "slot_dream"],
+          "description": "Active reflection domain."
+        },
+        "depthMode": {
+          "type": "string",
+          "enum": ["quick", "balanced", "deep"],
+          "description": "Selected Abbot reasoning depth."
+        },
+        "messageCount": {
+          "type": "integer",
+          "description": "Bounded counter of turns in this thread (0-500)."
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": ["ownerId", "title", "domainSlot", "depthMode", "messageCount", "createdAt", "updatedAt"]
+    },
+    "AbbotMessage": {
+      "title": "AbbotMessage",
+      "description": "Single user or Abbot message inside an AbbotThread subcollection.",
+      "type": "object",
+      "properties": {
+        "ownerId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "threadId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "role": {
+          "type": "string",
+          "enum": ["user", "abbot"]
+        },
+        "modality": {
+          "type": "string",
+          "enum": ["text", "voice", "transcript"]
+        },
+        "text": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 4000
+        },
+        "lens": {
+          "type": "string",
+          "enum": ["buddhist", "islamic", "chinese", "christian", "jewish", "thai_folk"]
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": ["ownerId", "threadId", "role", "modality", "text", "lens", "createdAt"]
+    },
+    "SavedReading": {
+      "title": "SavedReading",
+      "description": "Saved Thai psychological reflection digest or Sanctuary talisman entry.",
+      "type": "object",
+      "properties": {
+        "ownerId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "domainSlot": {
+          "type": "string",
+          "enum": ["slot_horoscope", "slot_tarot", "slot_dream"]
+        },
+        "timeframe": {
+          "type": "string",
+          "enum": ["daily", "weekly", "monthly", "yearly"]
+        },
+        "activeLens": {
+          "type": "string",
+          "enum": ["buddhist", "islamic", "chinese", "christian", "jewish", "thai_folk"]
+        },
+        "promptSummary": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "headline": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 240
+        },
+        "coreGuidance": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 4000
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": ["ownerId", "domainSlot", "timeframe", "activeLens", "promptSummary", "headline", "coreGuidance", "createdAt"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": { "$ref": "#/entities/UserProfile" },
+      "description": "Owner-only user sanctuary profile and preferences."
+    },
+    "/users/{userId}/abbotThreads/{threadId}": {
+      "schema": { "$ref": "#/entities/AbbotThread" },
+      "description": "Owner-only multi-turn Frog Abbot conversation threads."
+    },
+    "/users/{userId}/abbotThreads/{threadId}/messages/{messageId}": {
+      "schema": { "$ref": "#/entities/AbbotMessage" },
+      "description": "Owner-only messages within a Frog Abbot conversation thread."
+    },
+    "/users/{userId}/savedReadings/{readingId}": {
+      "schema": { "$ref": "#/entities/SavedReading" },
+      "description": "Owner-only saved psychological reflection summaries and talisman notes."
+    }
+  }
+}

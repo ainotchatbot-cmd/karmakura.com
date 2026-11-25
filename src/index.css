@@ -1,0 +1,335 @@
+@import "tailwindcss";
+
+@theme {
+  --color-slate-deep: #0D1015;
+  --color-ash-aged: #171B23;
+  --color-parchment: #F4EFE6;
+  --color-lantern-gold: #D4A359;
+  --color-forest-moss: #4A5D4E;
+  --color-mithril: #C0C5CE;
+
+  --font-display: "Cinzel", "Noto Serif Thai", Georgia, serif;
+  --font-body: "Anuphan", "Lora", system-ui, sans-serif;
+  --font-serif-thai: "Noto Serif Thai", "Lora", Georgia, serif;
+}
+
+:root {
+  --theme-bg: #0D1015;
+  --theme-surface: #141820;
+  --theme-surface-elevated: #1A212C;
+  --theme-accent: #D4A359;
+  --theme-moss: #4A5D4E;
+}
+
+[data-theme="obsidian_gold"] {
+  --theme-bg: #0D1015;
+  --theme-surface: #141820;
+  --theme-surface-elevated: #1A212C;
+  --theme-accent: #D4A359;
+  --theme-moss: #4A5D4E;
+}
+
+[data-theme="moss_slate"] {
+  --theme-bg: #0A100F;
+  --theme-surface: #111B19;
+  --theme-surface-elevated: #172421;
+  --theme-accent: #7BA591;
+  --theme-moss: #3F6355;
+}
+
+[data-theme="mithril_dusk"] {
+  --theme-bg: #0C0F17;
+  --theme-surface: #141926;
+  --theme-surface-elevated: #1B2233;
+  --theme-accent: #B8C7E0;
+  --theme-moss: #4E5B73;
+}
+
+@layer base {
+  html {
+    font-family: var(--font-body);
+    background-color: var(--theme-bg);
+    color: #F4EFE6;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-image:
+      radial-gradient(ellipse 80% 45% at 50% 0%, color-mix(in srgb, var(--theme-accent) 10%, transparent) 0%, rgba(13, 16, 21, 0) 70%),
+      radial-gradient(ellipse 60% 40% at 85% 35%, color-mix(in srgb, var(--theme-moss) 11%, transparent) 0%, rgba(13, 16, 21, 0) 70%);
+    background-color: var(--theme-bg);
+    min-height: 100dvh;
+  }
+
+  h1, h2, h3, .font-display {
+    font-family: var(--font-display);
+    text-wrap: balance;
+  }
+}
+
+.shrine-surface {
+  background-color: var(--theme-surface);
+  border-color: color-mix(in srgb, var(--theme-accent) 24%, transparent);
+}
+
+.lantern-glow {
+  transition: box-shadow 180ms cubic-bezier(0.16, 1, 0.3, 1), transform 180ms cubic-bezier(0.16, 1, 0.3, 1), border-color 180ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.lantern-glow:hover:not(:disabled) {
+  box-shadow: 0 0 22px color-mix(in srgb, var(--theme-accent) 36%, transparent);
+}
+
+.parchment-sheet {
+  background-color: #F4EFE6;
+  color: #1C1F24;
+}
+
+.reading-measure {
+  max-width: 68ch;
+  line-height: 1.8;
+}
+
+.sanctuary-scroll::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.sanctuary-scroll::-webkit-scrollbar-track {
+  background: rgba(13, 16, 21, 0.35);
+}
+
+.sanctuary-scroll::-webkit-scrollbar-thumb {
+  background: rgba(212, 163, 89, 0.32);
+  border-radius: 9999px;
+}
+
+/* ============================================================================
+   Wise Wizard Frog Abbot CSS Animation Controller
+   ============================================================================ */
+
+@keyframes abbotIdleBreathe {
+  0%, 100% {
+    transform: translate3d(var(--abbot-gaze-x, 0px), 0px, 0) scale(1.012);
+  }
+  50% {
+    transform: translate3d(var(--abbot-gaze-x, 0px), -2px, 0) scale(1.024);
+  }
+}
+
+@keyframes abbotListeningLean {
+  0%, 100% {
+    transform: translate3d(var(--abbot-gaze-x, 0px), 1px, 0) scale(1.028);
+  }
+  50% {
+    transform: translate3d(var(--abbot-gaze-x, 0px), 3px, 0) scale(1.038);
+  }
+}
+
+@keyframes abbotThinkingSway {
+  0%, 100% {
+    transform: translate3d(calc(var(--abbot-gaze-x, 0px) - 2px), -1px, 0) scale(1.02);
+  }
+  50% {
+    transform: translate3d(calc(var(--abbot-gaze-x, 0px) + 2px), 1px, 0) scale(1.032);
+  }
+}
+
+@keyframes abbotTalkingCadence {
+  0%, 100% {
+    transform: translate3d(var(--abbot-gaze-x, 0px), 0px, 0) scale(1.024);
+  }
+  25% {
+    transform: translate3d(var(--abbot-gaze-x, 0px), -2.5px, 0) scale(1.036);
+  }
+  55% {
+    transform: translate3d(var(--abbot-gaze-x, 0px), 1px, 0) scale(1.028);
+  }
+  80% {
+    transform: translate3d(var(--abbot-gaze-x, 0px), -1.5px, 0) scale(1.034);
+  }
+}
+
+@keyframes abbotTalkingSac {
+  0%, 100% {
+    opacity: calc(0.28 + var(--abbot-speech-amp, 0.5) * 0.25);
+  }
+  30% {
+    opacity: calc(0.76 + var(--abbot-speech-amp, 0.5) * 0.24);
+  }
+  55% {
+    opacity: calc(0.42 + var(--abbot-speech-amp, 0.5) * 0.22);
+  }
+  80% {
+    opacity: calc(0.84 + var(--abbot-speech-amp, 0.5) * 0.16);
+  }
+}
+
+@keyframes abbotLanternIdle {
+  0%, 100% {
+    opacity: 0.34;
+    transform: scale(0.98);
+  }
+  50% {
+    opacity: 0.48;
+    transform: scale(1.04);
+  }
+}
+
+@keyframes abbotLanternListening {
+  0%, 100% {
+    opacity: 0.44;
+    transform: scale(1.02);
+  }
+  50% {
+    opacity: 0.62;
+    transform: scale(1.09);
+  }
+}
+
+@keyframes abbotLanternTalking {
+  0%, 100% {
+    opacity: 0.58;
+    transform: scale(1.04);
+  }
+  35% {
+    opacity: 0.88;
+    transform: scale(1.16);
+  }
+  70% {
+    opacity: 0.68;
+    transform: scale(1.08);
+  }
+}
+
+@keyframes abbotRimAuraTalking {
+  0%, 100% {
+    box-shadow: 0 18px 50px rgba(0, 0, 0, 0.85), 0 0 18px color-mix(in srgb, var(--theme-accent) 28%, transparent);
+  }
+  50% {
+    box-shadow: 0 18px 52px rgba(0, 0, 0, 0.85), 0 0 32px color-mix(in srgb, var(--theme-accent) 52%, transparent);
+  }
+}
+
+.abbot-square-frame {
+  transition:
+    transform 360ms cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 420ms ease,
+    box-shadow 450ms ease;
+}
+
+.abbot-portrait-rig {
+  transition: transform 420ms cubic-bezier(0.22, 1, 0.36, 1), filter 420ms ease;
+  will-change: transform;
+}
+
+.abbot-speaking-layer {
+  transition: opacity 280ms ease;
+  will-change: opacity;
+}
+
+.abbot-lantern-glow {
+  transition: opacity 380ms ease, transform 420ms ease;
+  will-change: opacity, transform;
+}
+
+[data-abbot-state="idle"] .abbot-portrait-rig {
+  animation: abbotIdleBreathe 5.4s ease-in-out infinite;
+  filter: brightness(1) contrast(1);
+}
+
+[data-abbot-state="idle"] .abbot-speaking-layer {
+  opacity: 0;
+}
+
+[data-abbot-state="idle"] .abbot-lantern-glow {
+  animation: abbotLanternIdle 4.2s ease-in-out infinite;
+}
+
+[data-abbot-state="listening"] .abbot-square-frame {
+  border-color: color-mix(in srgb, var(--theme-accent) 75%, #F4EFE6 25%);
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.86), 0 0 24px color-mix(in srgb, var(--theme-accent) 32%, transparent);
+}
+
+[data-abbot-state="listening"] .abbot-portrait-rig {
+  animation: abbotListeningLean 3.1s ease-in-out infinite;
+  filter: brightness(1.04) contrast(1.03);
+}
+
+[data-abbot-state="listening"] .abbot-speaking-layer {
+  opacity: 0.14;
+}
+
+[data-abbot-state="listening"] .abbot-lantern-glow {
+  animation: abbotLanternListening 2.8s ease-in-out infinite;
+}
+
+[data-abbot-state="thinking"] .abbot-square-frame {
+  border-color: color-mix(in srgb, var(--theme-accent) 68%, #7BA591 32%);
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.88), 0 0 26px color-mix(in srgb, var(--theme-moss) 45%, transparent);
+}
+
+[data-abbot-state="thinking"] .abbot-portrait-rig {
+  animation: abbotThinkingSway 3.6s ease-in-out infinite;
+  filter: brightness(0.97) contrast(1.05) saturate(1.06);
+}
+
+[data-abbot-state="thinking"] .abbot-speaking-layer {
+  opacity: 0.22;
+}
+
+[data-abbot-state="thinking"] .abbot-lantern-glow {
+  animation: abbotLanternListening 2.2s ease-in-out infinite;
+}
+
+[data-abbot-state="talking"] .abbot-square-frame {
+  border-color: var(--theme-accent);
+  animation: abbotRimAuraTalking 1.4s ease-in-out infinite;
+}
+
+[data-abbot-state="talking"] .abbot-portrait-rig {
+  animation: abbotTalkingCadence 0.95s ease-in-out infinite;
+  filter: brightness(1.06) contrast(1.04);
+}
+
+[data-abbot-state="talking"] .abbot-speaking-layer {
+  animation: abbotTalkingSac 0.56s ease-in-out infinite;
+}
+
+[data-abbot-state="talking"] .abbot-lantern-glow {
+  animation: abbotLanternTalking 0.85s ease-in-out infinite;
+}
+
+/* ============================================================================
+   Subconscious 5-Round A/B Funnel Card Transitions
+   ============================================================================ */
+
+@keyframes funnelPairEnter {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 10px, 0) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+.funnel-pair-enter {
+  animation: funnelPairEnter 240ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.funnel-pair-exit {
+  opacity: 0;
+  transform: translate3d(0, -8px, 0) scale(0.982);
+  transition: opacity 180ms ease, transform 180ms ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
